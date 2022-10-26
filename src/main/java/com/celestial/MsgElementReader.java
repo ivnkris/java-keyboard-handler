@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class MsgElementReader extends MsgReader implements IElementReader
 {   
-	public MsgElementReader( CustomPrompt cp )
+	public MsgElementReader( IPrompt cp )
 	{
 		super( cp );
 	}

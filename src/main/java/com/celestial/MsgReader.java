@@ -2,14 +2,14 @@ package com.celestial;
 
 public abstract class MsgReader 
 {
-	protected CustomPrompt itsPrompt;
+	protected IPrompt itsPrompt;
 	
-	public MsgReader( CustomPrompt cp )
+	public MsgReader( IPrompt cp )
 	{
 		itsPrompt = cp;
 	}
 	
-	public void setPrompt( CustomPrompt cp)
+	public void setPrompt( IPrompt cp)
 	{
 		itsPrompt = cp;
 	}

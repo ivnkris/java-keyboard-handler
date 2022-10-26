@@ -17,8 +17,9 @@ public class App
         int lineNo = 0;
         
         CustomPrompt cp = new CustomPrompt();
+        FunkyPrompt fk = new FunkyPrompt();
         ArrayList<IElementReader> readers = new ArrayList<>(2);
-        readers.add(new MsgElementReader(cp));
+        readers.add(new MsgElementReader(fk));
         readers.add(new MsgLineReader(cp));
         
         try
