@@ -16,9 +16,10 @@ public class App
         ArrayList<TextBlock> lines = new ArrayList<>(10);
         int lineNo = 0;
         
-        ArrayList<ElementReader> readers = new ArrayList<>(2);
-        readers.add(new MsgElementReader());
-        readers.add(new MsgLineReader());
+        CustomPrompt cp = new CustomPrompt();
+        ArrayList<IElementReader> readers = new ArrayList<>(2);
+        readers.add(new MsgElementReader(cp));
+        readers.add(new MsgLineReader(cp));
         
         try
         {
