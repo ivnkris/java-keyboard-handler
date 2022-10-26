@@ -1,6 +1,6 @@
 package com.celestial;
 
-public abstract class MsgReader 
+public abstract class MsgReader implements IElementReader
 {
 	protected IPrompt itsPrompt;
 	

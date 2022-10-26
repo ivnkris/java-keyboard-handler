@@ -3,7 +3,7 @@ package com.celestial;
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class MsgElementReader extends MsgReader implements IElementReader
+public class MsgElementReader extends MsgReader
 {   
 	public MsgElementReader( IPrompt cp )
 	{
