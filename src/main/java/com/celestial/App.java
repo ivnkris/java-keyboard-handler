@@ -20,7 +20,6 @@ public class App
         readers.add(new MsgElementReader());
         readers.add(new MsgLineReader());
         
-        
         try
         {
             while(!exitApp && lineRead != null)
