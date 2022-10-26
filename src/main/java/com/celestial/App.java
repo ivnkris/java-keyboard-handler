@@ -1,43 +1,57 @@
 package com.celestial;
 
-import java.util.Arrays;
+
+
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+
+
 /**
- * Keyboard Handler
- *
- */
-public class App 
+* Keyboard Handler
+*
+*/
+public class App
 {
     public static void main( String[] args )
     {
-        String lineRead;
+        String lineRead = "";
+        boolean exitApp = false;
         Scanner sc = new Scanner(System.in);
-        int growBy = 3;
-        String[] lines = new String[growBy];
+        ArrayList<TextBlock> lines = new ArrayList(10);
+        int lineNo = 0;
+        
+        ArrayList<ElementReader> readers = new ArrayList<>(2);
+        readers.add(new MsgElementReader(System.in));
+        readers.add(new MsgLineReader(System.in));
+        
         
         try
         {
-            for( int x = 0; (x < lines.length && prompt() && (lineRead = sc.next()) != null); x++ )
+            while(!exitApp && lineRead != null)
             {
-            	lines[x] = lineRead;
-                System.out.println(lineRead);
-                if( x == lines.length - 1 )
-                	lines = Arrays.copyOf(lines, lines.length + growBy);
-                if( lineRead.equalsIgnoreCase("QUIT"))
-                	break;
+                for (var reader: readers) {
+                    lineRead = reader.readFromKeyboard();
+                    if (lineRead != null) {
+                        if (lineRead.equalsIgnoreCase("quit"))
+                        {
+                            exitApp = true;
+                        	break;
+                        }
+                        TextBlock tb = new TextBlock(++lineNo, lineRead);
+                        lines.add(tb);
+                        System.out.println(lineRead);
+                    }
+                    else
+                        break;
+                }
             }
         }catch( NoSuchElementException e )
         {}
         
-        for( String line :  lines )
-        	System.out.println(line);
-    }
-    
-    static private boolean prompt()
-    {
-        System.out.print("Enter a message:");
-        return true;
+        lines.forEach(tb -> {
+            System.out.println(tb);
+        });
     }
 }
