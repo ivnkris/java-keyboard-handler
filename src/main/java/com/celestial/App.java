@@ -1,12 +1,7 @@
 package com.celestial;
 
-
-
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
-
-
 
 /**
 * Keyboard Handler
@@ -18,13 +13,12 @@ public class App
     {
         String lineRead = "";
         boolean exitApp = false;
-        Scanner sc = new Scanner(System.in);
-        ArrayList<TextBlock> lines = new ArrayList(10);
+        ArrayList<TextBlock> lines = new ArrayList<>(10);
         int lineNo = 0;
         
         ArrayList<ElementReader> readers = new ArrayList<>(2);
-        readers.add(new MsgElementReader(System.in));
-        readers.add(new MsgLineReader(System.in));
+        readers.add(new MsgElementReader());
+        readers.add(new MsgLineReader());
         
         
         try
@@ -32,7 +26,7 @@ public class App
             while(!exitApp && lineRead != null)
             {
                 for (var reader: readers) {
-                    lineRead = reader.readFromKeyboard();
+                    lineRead = reader.readFromKeyboard(System.in);
                     if (lineRead != null) {
                         if (lineRead.equalsIgnoreCase("quit"))
                         {
@@ -41,7 +35,6 @@ public class App
                         }
                         TextBlock tb = new TextBlock(++lineNo, lineRead);
                         lines.add(tb);
-                        System.out.println(lineRead);
                     }
                     else
                         break;

@@ -1,28 +1,15 @@
 package com.celestial;
 
-
-
 import java.io.InputStream;
 import java.util.Scanner;
 
-
-
-public class MsgLineReader extends ElementReader{
-    private Scanner theScanner;
-    
-    public MsgLineReader(InputStream is) {
-        theScanner = new Scanner(is);
-    }
-    
+public class MsgLineReader extends ElementReader
+{    
     @Override
-    protected void prompt()
+    public String readFromKeyboard( InputStream is ) 
     {
-        System.out.print("Enter a line of text: ");
-    }
-    
-    @Override
-    public String readFromKeyboard() {
-        prompt();
+    	Scanner theScanner = new Scanner(is);
+        prompt("Enter a line of text (hit enter): ");
         return theScanner.nextLine();
     }
 }
